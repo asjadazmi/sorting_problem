@@ -18,3 +18,36 @@ echo "the value of compute of 3 input is: ${expr[2]}";
 echo "the value of compute of 3 input is: ${expr[3]}";
 
 echo "${expr[@]}"
+
+
+
+for ((i=0;i<${#expr[@]};i++))
+do
+   for ((j=i+1;j<${#expr[@]};j++))
+   do
+      if [ ${expr[$i]} -lt ${expr[$j]} ]
+      then
+        temp=${expr[$i]};
+        expr[$i]=${expr[$j]};
+        expr[$j]=$temp;
+      fi
+    done
+done
+
+echo "descending order ${expr[@]}"
+
+for ((i=0;i<${#expr[@]};i++))
+do
+   for ((j=i+1;j<${#expr[@]};j++))
+   do
+       if [ ${expr[$i]} -gt ${expr[$j]} ]
+       then
+           temp=${expr[$i]};
+           expr[$i]=${expr[$j]};
+           expr[$j]=$temp;
+       fi
+    done   
+done
+
+echo "ascending order ${expr[@]}"
+       
